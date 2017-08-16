@@ -14,9 +14,11 @@ namespace PhpCsFixer\Console;
 
 use PhpCsFixer\Console\Command\DescribeCommand;
 use PhpCsFixer\Console\Command\FixCommand;
+use PhpCsFixer\Console\Command\HelpCommand;
 use PhpCsFixer\Console\Command\ReadmeCommand;
 use PhpCsFixer\Console\Command\SelfUpdateCommand;
 use Symfony\Component\Console\Application as BaseApplication;
+use Symfony\Component\Console\Command\ListCommand;
 
 /**
  * @author Fabien Potencier <fabien@symfony.com>
@@ -26,11 +28,9 @@ use Symfony\Component\Console\Application as BaseApplication;
  */
 final class Application extends BaseApplication
 {
-    const VERSION = '2.1.0';
+    const VERSION = '2.4.0';
+    const VERSION_CODENAME = 'Silver Gingerbread';
 
-    /**
-     * Constructor.
-     */
     public function __construct()
     {
         error_reporting(-1);
@@ -43,9 +43,17 @@ final class Application extends BaseApplication
         $this->add(new SelfUpdateCommand());
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getLongVersion()
     {
-        $version = parent::getLongVersion().' by <comment>Fabien Potencier</comment> and <comment>Dariusz Ruminski</comment>';
+        $version = parent::getLongVersion();
+        if (self::VERSION_CODENAME) {
+            $version .= ' <info>'.self::VERSION_CODENAME.'</info>';
+        }
+        $version .= ' by <comment>Fabien Potencier</comment> and <comment>Dariusz Ruminski</comment>';
+
         $commit = '@git-commit@';
 
         if ('@'.'git-commit@' !== $commit) {
@@ -53,5 +61,13 @@ final class Application extends BaseApplication
         }
 
         return $version;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function getDefaultCommands()
+    {
+        return [new HelpCommand(), new ListCommand()];
     }
 }
