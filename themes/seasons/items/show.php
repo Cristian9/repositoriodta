@@ -10,9 +10,9 @@
     
     <?php echo all_element_texts('item'); ?>
 
-    <?php $youtube_id = metadata('item', array('Dublin Core', 'Identifier')); ?>
+    <?php //$youtube_id = metadata('item', array('Dublin Core', 'Identifier')); ?>
 
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/<?php echo $youtube_id;?>" frameborder="0" allowfullscreen></iframe>
+    <!--<iframe width="560" height="315" src="https://www.youtube.com/embed/<?php //echo $youtube_id;?>" frameborder="0" allowfullscreen></iframe>-->
 
     
     <?php fire_plugin_hook('public_items_show', array('view' => $this, 'item' => $item)); ?>
