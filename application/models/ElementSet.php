@@ -47,7 +47,7 @@ class ElementSet extends Omeka_Record_AbstractRecord implements Zend_Acl_Resourc
      * This is used wherever it is important to distinguish this special case 
      * element set from others.
      */
-    const ITEM_TYPE_NAME = 'Item Type Metadata 2';
+    const ITEM_TYPE_NAME = 'Item Type Metadata';
 
     /**
      * Get the Elements that are in this set.
