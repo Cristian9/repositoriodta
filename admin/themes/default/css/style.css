@@ -86,6 +86,10 @@ img { border: 0; }
 
 .left { float: left; }
 
+#dublin-core-contributor {
+    display:none !important;
+}
+
 #skipnav {
     border: 0;
     clip: rect(0, 0, 0, 0);
